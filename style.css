@@ -18,6 +18,10 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth; /* Isso faz a página deslizar elegantemente */
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -222,9 +226,10 @@ body {
 /* [CAIXINHA: FAQ] */
 .faq-section {
     padding: 60px 20px;
-    max-width: 1200px; /* Aumentado para alinhar com o restante do site */
+    max-width: 1200px; 
     margin: 0 auto;
     background-color: var(--white);
+    text-align: center; /* Centraliza o título da seção */
 }
 
 .faq-container {
@@ -233,9 +238,39 @@ body {
 }
 
 .faq-item {
-    margin-bottom: 25px;
-    border-bottom: 1px solid var(--light-gray); /* Usando sua variável para consistência */
-    padding-bottom: 20px;
+    background: #f9f9f9;
+    margin-bottom: 15px;
+    border-radius: var(--radius);
+    padding: 15px 20px;
+    border: 1px solid var(--light-gray);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+/* Título da pergunta (Summary) */
+.faq-item summary {
+    font-weight: 600;
+    color: var(--dark-blue);
+    list-style: none; /* Remove a seta padrão */
+    position: relative;
+    padding-right: 25px;
+    outline: none;
+}
+
+/* Nossa seta personalizada */
+.faq-item summary::after {
+    content: '▼';
+    position: absolute;
+    right: 0;
+    font-size: 0.7rem;
+    color: var(--gold);
+    transition: transform 0.3s;
+}
+
+/* Gira a seta ao abrir */
+.faq-item[open] summary::after {
+    transform: rotate(180deg);
 }
 
 .faq-item h3 {
@@ -244,23 +279,137 @@ body {
     margin-bottom: 10px;
 }
 
+/* Estilo da Resposta (o P que fica escondido) */
 .faq-item p {
     color: #555;
-    line-height: 1.6; /* Melhor respiro para leitura */
+    line-height: 1.6;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.95rem;
 }
 
-/* [CAIXINHA: FOOTER] */
+/* [CAIXINHA: FOOTER - ADAPTADO] */
 .main-footer {
     background-color: var(--dark-blue);
     color: var(--white);
     padding: 30px 20px;
     text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha sutil de separação */
+}
+
+.footer-links {
+    margin-top: 10px;
 }
 
 .footer-links a {
-    color: var(--white);
+    color: var(--gold); /* Alterado para dourado para destacar que são links clicáveis */
     font-size: 0.8rem;
     margin: 0 10px;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 0.7;
+}
+
+/* [ESTILO: SEÇÃO DE DICAS - RESOLVENDO ALINHAMENTO] */
+.tips-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9; /* Fundo leve para destacar */
+    text-align: center; /* Centraliza o título e subtítulo */
+}
+
+.tips-grid {
+    display: grid;
+    /* Isso aqui cria as colunas e impede de ficar tudo grudado à esquerda */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 40px auto 0; /* O 'auto' centraliza o bloco inteiro na tela */
+}
+
+.tip-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px; /* Arredondado moderno */
+    border-top: 4px solid #D4AF37; /* Cor dourada (var(--gold)) */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    text-align: center; /* Centraliza o texto dentro do card */
+}
+
+.tip-card:hover {
+    transform: translateY(-5px); /* Efeito flutuar */
+}
+
+.tip-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.tip-card h4 {
+    color: #001f3f; /* Azul escuro (var(--dark-blue)) */
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.tip-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* [SISTEMA DE MODAIS - ADICIONAR ABAIXO] */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 5vh auto; /* Reduzi de 10% para 5vh para subir a caixa e centralizar melhor */
+    padding: 30px;
+    border-radius: var(--radius);
+    max-width: 600px;
+    width: 95%; /* Aumentei levemente para aproveitar melhor telas estreitas */
+    position: relative;
+    color: #333;
+    text-align: left;
+
+    /* --- SOLUÇÃO PARA CONTEÚDO CORTADO --- */
+    max-height: 85vh;    /* O modal não ultrapassa 85% da altura da tela */
+    overflow-y: auto;    /* Ativa a rolagem vertical se o texto for grande */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* Sombra para dar profundidade */
+}
+
+/* Opcional: Deixa a barra de rolagem interna mais discreta */
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #999;
 }
 
 /* [CAMADA 1: AJUSTES PARA CELULARES GRANDES / TABLETS PEQUENOS] */
@@ -302,4 +451,41 @@ body {
     .capture-form input { 
         width: 300px; 
     }
+}
+
+/* [ESTILO: SEÇÃO DE INSTALAÇÃO PWA] */
+.install-section {
+    padding: 60px 20px;
+    background-color: var(--light-gray);
+    text-align: center;
+}
+
+.install-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 40px auto 0;
+}
+
+.install-card {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: left;
+}
+
+.install-card h3 { 
+    color: var(--dark-blue); 
+    margin-bottom: 15px; 
+}
+
+.install-card ol { 
+    padding-left: 20px; 
+    color: #555; 
+}
+
+.install-card li { 
+    margin-bottom: 10px; 
 }
