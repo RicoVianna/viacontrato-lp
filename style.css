@@ -42,9 +42,10 @@ body {
 .header-container {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Isso garante que o menu fique centralizado com a logo */
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 10px 20px; /* Adicionado para o logo não colar na borda */
 }
 
 /* [ATUALIZADO] Estilo para o container da logo e a imagem */
@@ -80,6 +81,11 @@ body {
     margin-left: 20px;
     font-weight: 600;
     transition: color 0.3s;
+}
+
+/* Regra nova: Por padrão (celular muito pequeno), escondemos os links de texto */
+.nav-link {
+    display: none;
 }
 
 
@@ -414,14 +420,18 @@ body {
 
 /* [CAMADA 1: AJUSTES PARA CELULARES GRANDES / TABLETS PEQUENOS] */
 @media (min-width: 600px) {
+    .nav-link {
+        display: inline-block; /* O texto volta a aparecer aqui */
+    }
+
     .logo-img {
-        height: 90px; /* O logo começa a crescer aqui */
+        height: 90px;
     }
     .hero-title {
-        font-size: 2.8rem; /* Título intermediário */
+        font-size: 2.8rem;
     }
     .features-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas em vez de uma só */
+        grid-template-columns: repeat(2, 1fr);
     }
     .btn-access-app {
         margin-left: 10px;
@@ -429,20 +439,20 @@ body {
         font-size: 0.85rem;
     }
     .faq-section {
-        padding: 80px 20px; /* Aumenta o respiro em telas maiores */
+        padding: 80px 20px;
     }
 }
 
 /* [CAMADA 2: DESKTOP E TELAS GRANDES] */
 @media (min-width: 768px) {
     .logo-img {
-        height: 100px; /* Seu tamanho ideal de 100px que você gostou */
+        height: 100px;
     }
     .hero-title { 
         font-size: 3.5rem; 
     }
     .features-grid { 
-        grid-template-columns: repeat(3, 1fr); /* 3 colunas completas */
+        grid-template-columns: repeat(3, 1fr);
     }
     .capture-form {
         flex-direction: row;
