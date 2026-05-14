@@ -1,0 +1,305 @@
+/* [VARIÁVEIS DE IDENTIDADE VISUAL] */
+:root {
+    --primary-blue: #2563eb;
+    --dark-blue: #1a2a40;
+    --gold: #D4AF37;
+    --gold-hover: #f1c40f;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --text-color: #333333;
+    --radius: 10px;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* [ESTILOS GERAIS] */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+/* [CAIXINHA: HEADER] */
+.main-header {
+    background-color: var(--dark-blue); /* Mudamos de white para dark-blue */
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Linha sutil para separação */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Isso garante que o menu fique centralizado com a logo */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* [ATUALIZADO] Estilo para o container da logo e a imagem */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 100px; /* Seu tamanho ideal para Desktop */
+    max-height: 20vh; /* Garante que não ocupe mais de 20% da altura da tela */
+    width: auto;
+    display: block;
+    border-radius: 12px; 
+    transition: all 0.4s ease;
+    
+    /* Glow Dourado que você pediu */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); 
+}
+
+.logo-img:hover {
+    transform: scale(1.1); /* Ele cresce levemente */
+    
+    /* A luz "grita" no hover, como você pediu */
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+    cursor: pointer;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--white); 
+    font-size: 1rem;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+
+.nav-menu a:hover {
+    color: var(--gold); /* Efeito dourado ao passar o mouse */
+}
+
+/* [ESTILO: BOTÃO ACESSAR APP NO HEADER] */
+.btn-access-app {
+    background-color: transparent;
+    color: var(--gold) !important; /* Usando o seu dourado característico */
+    border: 2px solid var(--gold);
+    padding: 10px 22px;
+    border-radius: var(--radius); /* Mantendo a consistência dos cantos */
+    margin-left: 25px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.btn-access-app:hover {
+    background-color: var(--gold);
+    color: var(--dark-blue) !important; /* Inverte as cores no hover */
+    transform: translateY(-3px); /* Efeito de flutuação */
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); /* Glow suave dourado */
+}
+
+/* [CAIXINHA: HERO] */
+.hero-section {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* [COMPONENTES: BOTÃO CTA] */
+.cta-button-gold {
+    background-color: var(--gold);
+    color: var(--dark-blue);
+    padding: 15px 30px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button-gold:hover {
+    background-color: var(--gold-hover);
+}
+
+/* [CAIXINHA: FEATURES] */
+.features-section {
+    padding: 80px 20px; /* Aumentei um pouco o respiro para parecer mais premium */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--dark-blue);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px; /* Aumentei o espaço entre os cards */
+}
+
+.feature-card {
+    background: var(--light-gray);
+    padding: 40px 30px; /* Mais espaço interno para o texto respirar */
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Prepara para o hover */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Efeito de interação que combina com o projeto 2.0 */
+.feature-card:hover {
+    transform: translateY(-10px); /* Ele "flutua" ao passar o mouse */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    background: #ffffff; /* Dá um leve destaque no fundo ao interagir */
+}
+
+.feature-card h3 {
+    margin: 20px 0 15px 0;
+    color: var(--dark-blue);
+    font-size: 1.4rem;
+}
+
+.feature-card p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.icon-placeholder {
+    font-size: 3rem; /* Emojis maiores para destaque visual */
+    margin-bottom: 10px;
+}
+
+/* [CAIXINHA: CAPTURA] */
+.capture-section {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.capture-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.capture-form input {
+    padding: 15px;
+    border-radius: var(--radius);
+    border: none;
+}
+
+/* [CAIXINHA: FAQ] */
+.faq-section {
+    padding: 60px 20px;
+    max-width: 1200px; /* Aumentado para alinhar com o restante do site */
+    margin: 0 auto;
+    background-color: var(--white);
+}
+
+.faq-container {
+    max-width: 800px; /* Mantém o texto das dúvidas centralizado e legível */
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--light-gray); /* Usando sua variável para consistência */
+    padding-bottom: 20px;
+}
+
+.faq-item h3 {
+    color: var(--dark-blue); /* Azul do projeto para autoridade */
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    color: #555;
+    line-height: 1.6; /* Melhor respiro para leitura */
+}
+
+/* [CAIXINHA: FOOTER] */
+.main-footer {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.footer-links a {
+    color: var(--white);
+    font-size: 0.8rem;
+    margin: 0 10px;
+}
+
+/* [CAMADA 1: AJUSTES PARA CELULARES GRANDES / TABLETS PEQUENOS] */
+@media (min-width: 600px) {
+    .logo-img {
+        height: 90px; /* O logo começa a crescer aqui */
+    }
+    .hero-title {
+        font-size: 2.8rem; /* Título intermediário */
+    }
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em vez de uma só */
+    }
+    .btn-access-app {
+        margin-left: 10px;
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+    .faq-section {
+        padding: 80px 20px; /* Aumenta o respiro em telas maiores */
+    }
+}
+
+/* [CAMADA 2: DESKTOP E TELAS GRANDES] */
+@media (min-width: 768px) {
+    .logo-img {
+        height: 100px; /* Seu tamanho ideal de 100px que você gostou */
+    }
+    .hero-title { 
+        font-size: 3.5rem; 
+    }
+    .features-grid { 
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas completas */
+    }
+    .capture-form {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .capture-form input { 
+        width: 300px; 
+    }
+}
