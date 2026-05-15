@@ -31,39 +31,37 @@ body {
 
 /* [CAIXINHA: HEADER] */
 .main-header {
-    background-color: var(--dark-blue); /* Mudamos de white para dark-blue */
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1); /* Linha sutil para separação */
+    background-color: var(--dark-blue);
+    padding: 10px 0; /* Reduzi um pouco para não ocupar tanta altura no celular */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
+/* [HEADER BASE: Celular primeiro - Layout Empilhado] */
 .header-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Coloca Logo em cima e Menu embaixo */
+    align-items: center;    /* Centraliza tudo */
+    gap: 15px;              /* Espaço entre o logo e os botões */
+    padding: 10px 20px;     /* O respiro lateral que você queria */
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px 20px; /* Adicionado para o logo não colar na borda */
 }
 
-/* [ATUALIZADO] Estilo para o container da logo e a imagem */
 .logo {
     display: flex;
-    align-items: center;
+    justify-content: center; /* Garante o logo centralizado no topo */
+    width: 100%;
 }
 
 .logo-img {
-    height: 100px; /* Seu tamanho ideal para Desktop */
-    max-height: 20vh; /* Garante que não ocupe mais de 20% da altura da tela */
+    height: 50px; /* Tamanho confortável para o topo no celular */
     width: auto;
-    display: block;
-    border-radius: 12px; 
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
     transition: all 0.4s ease;
-    
-    /* Glow Dourado que você pediu */
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); 
 }
 
 .logo-img:hover {
@@ -74,20 +72,29 @@ body {
     cursor: pointer;
 }
 
+/* [MENU DE NAVEGAÇÃO: Celular] */
+.nav-menu {
+    display: flex;
+    flex-direction: row;    /* Mantém os links e o botão lado a lado */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 12px;              /* Espaço entre os itens */
+}
+
+/* Estilo geral dos links no menu */
 .nav-menu a {
     text-decoration: none;
     color: var(--white); 
-    font-size: 1rem;
-    margin-left: 20px;
+    font-size: 0.85rem;     /* Um pouco maior que o anterior, pois agora tem espaço */
     font-weight: 600;
     transition: color 0.3s;
 }
 
-/* Regra nova: Por padrão (celular muito pequeno), escondemos os links de texto */
+/* Removi aquele margin-left fixo que empurrava o botão no celular */
 .nav-link {
-    display: none;
+    margin-left: 0 !important; 
 }
-
 
 .nav-menu a:hover {
     color: var(--gold); /* Efeito dourado ao passar o mouse */
@@ -96,16 +103,17 @@ body {
 /* [ESTILO: BOTÃO ACESSAR APP NO HEADER] */
 .btn-access-app {
     background-color: transparent;
-    color: var(--gold) !important; /* Usando o seu dourado característico */
+    color: var(--gold) !important;
     border: 2px solid var(--gold);
-    padding: 10px 22px;
-    border-radius: var(--radius); /* Mantendo a consistência dos cantos */
-    margin-left: 25px;
-    font-size: 0.95rem;
+    padding: 6px 12px; /* Reduzi aqui para caber no celular */
+    border-radius: var(--radius);
+    margin-left: 10px; /* Reduzi o espaço da esquerda no celular */
+    font-size: 0.8rem;  /* Fonte menor para celular */
     font-weight: 700;
     text-decoration: none;
     transition: all 0.4s ease;
     display: inline-block;
+    white-space: nowrap; /* Impede o botão de quebrar o texto em 2 linhas */
 }
 
 .btn-access-app:hover {
@@ -420,26 +428,51 @@ body {
 
 /* [CAMADA 1: AJUSTES PARA CELULARES GRANDES / TABLETS PEQUENOS] */
 @media (min-width: 600px) {
-    .nav-link {
-        display: inline-block; /* O texto volta a aparecer aqui */
+    .header-container {
+        flex-direction: row; 
+        justify-content: space-between;
+        padding: 10px 40px; /* Aumentei o respiro lateral no PC */
     }
 
+    .logo {
+        width: auto;                 /* No PC o logo volta para a esquerda */
+        justify-content: flex-start;
+    }
+
+    /* LOGO: Mais imponente no computador */
     .logo-img {
-        height: 90px;
+        height: 110px; /* Aumentamos um pouco mais para dar autoridade */
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); /* Glow mais visível */
     }
-    .hero-title {
-        font-size: 2.8rem;
+
+    /* MENU: Resolve o erro das palavras coladas */
+    .nav-menu {
+        display: flex;
+        gap: 30px; /* <--- ISSO AQUI separa Funcionalidades de Dúvidas e do Botão */
+        width: auto;
     }
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    .nav-menu a {
+        margin-left: 0; /* Zeramos a margem antiga para o GAP mandar no espaço */
+        font-size: 1.05rem; /* Texto levemente maior para facilitar leitura */
     }
+
     .btn-access-app {
-        margin-left: 10px;
-        padding: 8px 15px;
-        font-size: 0.85rem;
+        margin-left: 0; /* O GAP já vai dar o espaço necessário */
+        padding: 12px 25px; /* Botão um pouco mais robusto */
     }
-    .faq-section {
-        padding: 80px 20px;
+
+    /* Recoloque aqui o restante do seu @media (hero-title, features-grid, etc) */
+    .hero-title { 
+        font-size: 2.8rem; 
+    }
+
+    .features-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .faq-section { 
+        padding: 80px 20px; 
     }
 }
 
